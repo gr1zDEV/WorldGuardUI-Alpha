@@ -1,0 +1,38 @@
+# EzWGGUI Configuration
+
+gui:
+  border-material: GRAY_STAINED_GLASS_PANE
+  flag-material: REDSTONE_TORCH
+  items-per-page: 28
+  sounds:
+    open: UI_BUTTON_CLICK
+    click: UI_BUTTON_CLICK
+    error: ENTITY_VILLAGER_NO
+
+presets:
+  safe-zone:
+    pvp: DENY
+    mob-spawning: DENY
+    creeper-explosion: DENY
+    tnt: DENY
+    build: DENY
+    block-break: DENY
+    block-place: DENY
+  pvp-arena:
+    pvp: ALLOW
+    build: DENY
+    block-break: DENY
+    block-place: DENY
+  build-zone:
+    build: ALLOW
+    block-break: ALLOW
+    block-place: ALLOW
+    interact: ALLOW
+
+messages:
+  prefix: "<color:#7B68EE>[EzWGGUI] </color>"
+  no-permission: "<red>You don't have permission to do that.</red>"
+  worldguard-not-found: "<red>WorldGuard is not installed!</red>"
+  region-not-found: "<red>Region not found.</red>"
+  flag-updated: "<green>Flag <yellow>{flag}</yellow> set to <yellow>{value}</yellow> in region <yellow>{region}</yellow>.</green>"
+  flag-reset: "<yellow>Flag <gold>{flag}</gold> has been reset in region <gold>{region}</gold>.</yellow>"

@@ -1,0 +1,36 @@
+name: EzWGGUI
+version: '${project.version}'
+main: com.ezinnovations.ezwggui.EzWGGUI
+api-version: '1.21.11'
+folia-supported: true
+description: A GUI interface for managing WorldGuard regions and flags
+authors:
+  - EzInnovations
+website: https://github.com/EzInnovations/EzWGGUI
+softdepend:
+  - WorldGuard
+  - WorldEdit
+commands:
+  ezwggui:
+    description: Open the WorldGuard GUI
+    usage: /<command> [reload|region <name>]
+    aliases:
+      - wggui
+      - ezwg
+permissions:
+  ezwggui.admin:
+    description: Full EzWGGUI access
+    default: op
+    children:
+      ezwggui.use: true
+      ezwggui.edit: true
+      ezwggui.reload: true
+  ezwggui.use:
+    description: Open the GUI
+    default: op
+  ezwggui.edit:
+    description: Edit flags and members
+    default: op
+  ezwggui.reload:
+    description: Reload configuration
+    default: op
