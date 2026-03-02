@@ -67,10 +67,10 @@ public class WorldGuardHook {
     public Collection<Flag<?>> getAllFlagsSorted() {
         List<Flag<?>> flags = new ArrayList<>(WorldGuard.getInstance().getFlagRegistry().getAll());
         List<String> common = List.of("pvp", "build", "block-break", "block-place", "interact", "chest-access", "use", "entry", "exit");
-        flags.sort(Comparator.comparingInt(f -> {
+        flags.sort(Comparator.<Flag<?>>comparingInt(f -> {
             int idx = common.indexOf(f.getName());
             return idx >= 0 ? idx : common.size();
-        }).thenComparing(Flag::getName));
+        }).thenComparing(flag -> flag.getName()));
         return flags;
     }
 
