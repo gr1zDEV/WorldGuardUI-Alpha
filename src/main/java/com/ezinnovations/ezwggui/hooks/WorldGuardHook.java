@@ -3,7 +3,7 @@ package com.ezinnovations.ezwggui.hooks;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.flags.Flag;
-import com.sk89q.worldguard.protection.flags.Flags;
+import com.sk89q.worldguard.protection.flags.FlagContext;
 import com.sk89q.worldguard.protection.flags.IntegerFlag;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.StringFlag;
@@ -65,7 +65,7 @@ public class WorldGuardHook {
     }
 
     public Collection<Flag<?>> getAllFlagsSorted() {
-        List<Flag<?>> flags = new ArrayList<>(Flags.getFlags().values());
+        List<Flag<?>> flags = new ArrayList<>(WorldGuard.getInstance().getFlagRegistry().getAll());
         List<String> common = List.of("pvp", "build", "block-break", "block-place", "interact", "chest-access", "use", "entry", "exit");
         flags.sort(Comparator.comparingInt(f -> {
             int idx = common.indexOf(f.getName());
@@ -101,7 +101,8 @@ public class WorldGuardHook {
             } else if (flag instanceof StringFlag) {
                 value = input;
             } else {
-                value = flag.parseInput(null, null, input);
+                FlagContext context = FlagContext.create().setInput(input).build();
+                value = flag.parseInput(context);
             }
             ref.region().setFlag((Flag) flag, value);
             save(ref);
